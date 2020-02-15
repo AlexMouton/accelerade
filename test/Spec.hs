@@ -1,2 +1,14 @@
+import Data.Array.Accelerate              as A
+import Data.Array.Accelerate.LLVM.Native  as CPU
+import Data.Array.Accelerate.LLVM.PTX     as GPU
+
+import Test.Hspec
+import System.TimeIt (timeItNamed)
+
+import qualified DotpSpec
+import qualified TriPointSpec
+
 main :: IO ()
-main = putStrLn "Test suite not yet implemented"
+main = hspec $ do
+  -- describe "Dotp" DotpSpec.spec
+  describe "TriPoint"  TriPointSpec.spec

@@ -48,6 +48,7 @@ extra-deps:
 - accelerate-1.2.0.1@sha256:bb1928efe602545df4043692916ed427c959110cbd678d03c3f9c3be25d1ae88,20112
 - llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
 - llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
+- linear-accelerate-0.6.0.0@sha256:3b85a8c8e4effe1438fb8cf15af13dcfffc1271e21af607ba16dc2ea2f96c1e9,2547 
 
 # Override default flag values for local packages and extra-deps
 flags:
