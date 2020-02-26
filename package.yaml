@@ -55,4 +55,5 @@ tests:
     dependencies:
     - accelerade
     - hspec
+    - QuickCheck >= 2.13.2
     - timeit
