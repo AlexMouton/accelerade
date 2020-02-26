@@ -7,8 +7,10 @@ import System.TimeIt (timeItNamed)
 
 import qualified DotpSpec
 import qualified TriPointSpec
+import qualified ArraySpec
 
 main :: IO ()
 main = hspec $ do
   -- describe "Dotp" DotpSpec.spec
   describe "TriPoint"  TriPointSpec.spec
+  describe "Array"  ArraySpec.spec
