@@ -2,7 +2,15 @@ module TriPoint where
 
 import Data.Array.Accelerate.Linear.V3 (V3(..))
 import qualified Linear.V3 as L
+-- import Linear.Vector ((^-^))
+
 import Linear.Metric (dot)
+
+import Debug.Trace
+
+-- traceThru :: Show  a => String -> a -> a
+traceThru s a = traceShow (s ++ " " ++ show a) a
+-- traceThru _ a = a
 
 type Triangle a = (L.V3 a, L.V3 a, L.V3 a)
 type Point a = L.V3 a
@@ -22,9 +30,10 @@ barycentric (a, b, c) p =
     dot12 = dot v1 v2
 
     -- Compute barycentric coordinates
-    invDenom = 1 / (dot00 * dot11 - dot01 * dot01)
-    u = (dot11 * dot02 - dot01 * dot12) * invDenom
-    v = (dot00 * dot12 - dot01 * dot02) * invDenom
+    denom = (dot00 * dot11 - dot01 * dot01)
+    invDenom = 1.0 / denom
+    u = if denom == 0.0 then 0.0 else (dot11 * dot02 - dot01 * dot12) * invDenom
+    v = if denom == 0.0 then 0.0 else (dot00 * dot12 - dot01 * dot02) * invDenom
   in
     -- Check if point is in triangle
-    (u >= 0) && (v >= 0) && (u + v < 1)
+    (v >= 0.0) && (u >= 0.0) && (u + v < 1.0)
