@@ -7,12 +7,14 @@ import Test.Hspec
 
 import qualified DotpSpec
 import qualified TriPointSpec
+import qualified TriPointAccSpec
 import qualified ArraySpec
 import qualified ArbysSpec
 
 main :: IO ()
 main = hspec $ do
   describe "Arbys" ArbysSpec.spec
-  -- describe "Dotp" DotpSpec.spec
+  describe "Dotp" DotpSpec.spec
   describe "TriPoint"  TriPointSpec.spec
+  describe "TriPointAcc"  TriPointAccSpec.spec
   describe "Array"  ArraySpec.spec

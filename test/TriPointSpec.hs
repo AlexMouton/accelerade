@@ -4,50 +4,21 @@ import Test.Hspec
 import Test.QuickCheck
 import Test.QuickCheck.Property
 
-import System.TimeIt (timeItNamed, timeItT)
-
-import Debug.Trace
+import Control.Exception (evaluate)
 
 import qualified Linear.V3 as L
-import qualified Data.Array.Accelerate.Linear.V3 as AL
 
-import Control.Exception (evaluate)
-import qualified Data.Array.Accelerate as A
-import Data.Array.Accelerate ( (:.) )
+import System.TimeIt (timeItNamed, timeItT)
+import Debug.Trace
 
-import qualified Data.Array.Accelerate.LLVM.Native as CPU
-import qualified Data.Array.Accelerate.LLVM.PTX as GPU
-
-import Unsafe.Coerce (unsafeCoerce)
-
-import TriPoint
+import Bary
 import Types
+import TriPoint
+
+import SupportAcc
+
 import Arbys
-import SupportAcc 
-
-baryArb :: (Float -> Float -> Float -> v Float ) -> Gen (v Float)
-baryArb v = do
-  x <- arbFloatUnit
-  y <- (*) (1.0 - x) <$> arbFloatUnit
-  let z = 1.0 - (x + y)
-  return $ v x y z
-
-baryToPoint :: Triangle (L.V3 Float) -> L.V3 Float -> L.V3 Float
-baryToPoint (p0, p1, p2) (L.V3 b0 b1 b2) = 
-  p0 * pure b0 
-  + p1 * pure b1 
-  + p2 * pure b2
-
-specBariAcc dim runN = do
-  it "prints" $ do
-    t <- generate triArb
-    let pointsArb = vectorOf dim $ fmap (baryToPoint t) (baryArb AL.V3) :: Gen [AL.V3 Float]
-    ps <- generate pointsArb
-    let vec = A.fromList (A.Z A.:. dim) ps :: A.Vector (AL.V3 Float)
-    let baryN = runN $ A.filter (barycentricExp $ A.lift t) :: A.Array (A.DIM0 :. Int) (AL.V3 Float) -> (A.Vector (AL.V3 Float), A.Array A.DIM0 Int)
-    evaluate baryN
-    (t, v) <- timeItT $ pure $ baryN vec
-    print t
+import ArbBary
 
 spec :: Spec
 spec = do
@@ -77,12 +48,8 @@ spec = do
       let dim = 100000000 :: Int
       it "prints" $ do
         t <- generate triArb
-        let pointsArb = vectorOf dim $ fmap (baryToPoint t) (baryArb AL.V3) :: Gen [AL.V3 Float]
+        let pointsArb = vectorOf dim $ fmap (baryToPoint t) (baryArb L.V3) :: Gen [L.V3 Float]
         ps <- generate pointsArb
         let baryNative = filter (barycentric t)
         (t, v) <- timeItT $ pure $ baryNative ps
         print t
-
-  describe "Acc" $ do
-      let dim = 100000000 :: Int
-      specPair "baricentric" $ specBariAcc dim
