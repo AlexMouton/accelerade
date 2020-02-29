@@ -1,6 +1,7 @@
 module ArbBary where
 
 import Test.QuickCheck
+import ArbFloat
 import Arbys
 
 baryArb :: (Float -> Float -> Float -> v Float ) -> Gen (v Float)

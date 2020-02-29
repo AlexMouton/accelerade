@@ -5,15 +5,15 @@ import Data.Array.Accelerate.LLVM.PTX     as GPU
 
 import Test.Hspec
 
+import qualified ArbFloatSpec
 import qualified DotpSpec
 import qualified TriPointSpec
 import qualified TriPointAccSpec
 import qualified ArraySpec
-import qualified ArbysSpec
 
 main :: IO ()
 main = hspec $ do
-  describe "Arbys" ArbysSpec.spec
+  describe "ArbFloat" ArbFloatSpec.spec
   describe "Dotp" DotpSpec.spec
   describe "TriPoint"  TriPointSpec.spec
   describe "TriPointAcc"  TriPointAccSpec.spec
