@@ -68,22 +68,3 @@ barycentricExp et p =
     v = (dot00 * dot12 - dot01 * dot02) * invDenom
   in 
     A.lift $ (v A.>= 0.0) A.&& (u A.>= 0.0) A.&& (u + v A.< 1.0)
-
--- barycentricExp :: A.Exp (Triangle (AL.V3 Float)) -> A.Exp (AL.V3 Float) -> A.Exp Bool
--- barycentricExp _ _ = A.constant True
-
--- barycentricExp :: A.Exp (Triangle (Point Float)) -> A.Exp (Point Float) -> A.Exp Bool
--- barycentricExp et p = 
---   -- let 
---     -- t = A.unlift et :: (Exp (AL.V3 Float), Exp (AL.V3 Float), Exp (AL.V3 Float))
---   -- in 
---     (A.lift2 barycentric) et p
-
--- barycentricSingleTriAcc :: Acc (Triangle Float) -> Acc (Vector (Point Float)) -> Acc (Vector (Point Float))
--- barycentricSingleTriAcc t = A.filter (const True) --(barycentric t)
-
--- barycentricSinglePointAcc :: Acc (Point Float) -> Acc (Vector(Triangle Float)) -> Acc (Vector (Triangle Float))
--- barycentricSinglePointAcc p = A.filter ((flip barycentricExp) p)
-
--- barycentricCrossAcc :: Acc (Vector(Triangle Float)) -> Acc (Vector (Point Float)) -> Acc (Vector (Point Float, Triangle Float))
--- barycentricSinglePointAcc t ps = 
