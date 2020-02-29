@@ -23,6 +23,7 @@ import Unsafe.Coerce (unsafeCoerce)
 import TriPoint
 import Types
 import Arbys
+import SupportAcc 
 
 baryArb :: (Float -> Float -> Float -> v Float ) -> Gen (v Float)
 baryArb v = do
@@ -83,9 +84,5 @@ spec = do
         print t
 
   describe "Acc" $ do
-    describe "barycentri" $ do
       let dim = 100000000 :: Int
-      describe "CPU" $ do
-        specBariAcc dim CPU.runN
-      describe "GPU" $ do
-        specBariAcc dim GPU.runN
+      specPair "baricentric" $ specBariAcc dim
