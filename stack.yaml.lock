@@ -5,33 +5,81 @@
 
 packages:
 - completed:
-    hackage: accelerate-llvm-1.2.0.1@sha256:e794b1abfea5424671d84d5d69bb9ccf468af9adaa481f9adaa78c42538a9cda,7206
+    size: 440008
+    url: https://github.com/acceleratehs/accelerate/archive/2693873fbf7f94ee408d9f2017ff47251ee064ef.tar.gz
+    cabal-file:
+      size: 20134
+      sha256: e32ebaecb198b5f00b58c2775bbf5875110152a40f982bd5bfd58251dee0c6ba
+    name: accelerate
+    version: 1.4.0.0
+    sha256: e23000538f8838659a0e68c9ac855d883eee0ad9c7ee294cfc42f0f67cd44a89
     pantry-tree:
-      size: 5092
-      sha256: 0328dda508b97c14ed2731f61796fe5140abb3e5038ed7ac244e3be256dd8d0b
+      size: 13469
+      sha256: dd4ff783f6fed533d3362afd79527584cede1a011f85dad3c39ce9ebd3898f80
   original:
-    hackage: accelerate-llvm-1.2.0.1@sha256:e794b1abfea5424671d84d5d69bb9ccf468af9adaa481f9adaa78c42538a9cda,7206
+    url: https://github.com/acceleratehs/accelerate/archive/2693873fbf7f94ee408d9f2017ff47251ee064ef.tar.gz
 - completed:
-    hackage: accelerate-llvm-native-1.2.0.1@sha256:d98c01bc08c6923270e50c5f032f3f816ceee4daddee98ced6e2f2440889f03f,7282
+    size: 267794
+    subdir: accelerate-llvm
+    url: https://github.com/AlexMouton/accelerate-llvm/archive/1e5969de59b0753ca9b1c6103ba9f6271d0127aa.tar.gz
+    cabal-file:
+      size: 5984
+      sha256: af70a47d458a7310f2025993b1dc8a52d58d816f7915c74e4c24ba8a673e6de0
+    name: accelerate-llvm
+    version: 1.4.0.0
+    sha256: cab204db2ad3fe66d0fcf0657727c2e400f80ae418e7c50f7aca0d835bdc001e
     pantry-tree:
-      size: 3808
-      sha256: 3b97b110d7a5b3f2b8774f8064041be98a26340e2b8d715433ec88b0dcda2007
+      size: 5454
+      sha256: f3af4e61c77b04fe2ed1633a14bb82a197903e8137a8269bb1a722672db56118
   original:
-    hackage: accelerate-llvm-native-1.2.0.1@sha256:d98c01bc08c6923270e50c5f032f3f816ceee4daddee98ced6e2f2440889f03f,7282
+    subdir: accelerate-llvm
+    url: https://github.com/AlexMouton/accelerate-llvm/archive/1e5969de59b0753ca9b1c6103ba9f6271d0127aa.tar.gz
 - completed:
-    hackage: accelerate-llvm-ptx-1.2.0.1@sha256:0ddd8f0f8a379a400dd82ad01c319fa4b13a64146b4e05beed5c486f1f2269f7,7020
+    size: 267794
+    subdir: accelerate-llvm-native
+    url: https://github.com/AlexMouton/accelerate-llvm/archive/1e5969de59b0753ca9b1c6103ba9f6271d0127aa.tar.gz
+    cabal-file:
+      size: 6318
+      sha256: fc61f7bc2fe9e4faa3d2ba5b0df49f9cc01962abd671cbf56ce8b4bd1a1a3e67
+    name: accelerate-llvm-native
+    version: 1.4.0.0
+    sha256: cab204db2ad3fe66d0fcf0657727c2e400f80ae418e7c50f7aca0d835bdc001e
     pantry-tree:
-      size: 4122
-      sha256: d99b9fb448b8d82c7e8406c78a720bc0a3b3840481ae0a8be0480e6275444523
+      size: 4693
+      sha256: 3d533c222cf771d5185c19352e5de7117dc49ec9c51ce685d05715fe48c63274
   original:
-    hackage: accelerate-llvm-ptx-1.2.0.1@sha256:0ddd8f0f8a379a400dd82ad01c319fa4b13a64146b4e05beed5c486f1f2269f7,7020
+    subdir: accelerate-llvm-native
+    url: https://github.com/AlexMouton/accelerate-llvm/archive/1e5969de59b0753ca9b1c6103ba9f6271d0127aa.tar.gz
 - completed:
-    hackage: accelerate-1.2.0.1@sha256:bb1928efe602545df4043692916ed427c959110cbd678d03c3f9c3be25d1ae88,20112
+    size: 267794
+    subdir: accelerate-llvm-ptx
+    url: https://github.com/AlexMouton/accelerate-llvm/archive/1e5969de59b0753ca9b1c6103ba9f6271d0127aa.tar.gz
+    cabal-file:
+      size: 6642
+      sha256: dd4e7da00153a5ecd6fa7f9796614ae5c0bb4a034af6944552ac08b1175a3a29
+    name: accelerate-llvm-ptx
+    version: 1.4.0.0
+    sha256: cab204db2ad3fe66d0fcf0657727c2e400f80ae418e7c50f7aca0d835bdc001e
     pantry-tree:
-      size: 10790
-      sha256: 8a4fbbb91a5a4ff77ebcc8f65ab5288874127f5f2e86304fad1b4c5d8186af5e
+      size: 4775
+      sha256: bfe92ad092f9577b45e7155e47432189a2683bc1a4465d3d8cf6ce7bd65f648b
   original:
-    hackage: accelerate-1.2.0.1@sha256:bb1928efe602545df4043692916ed427c959110cbd678d03c3f9c3be25d1ae88,20112
+    subdir: accelerate-llvm-ptx
+    url: https://github.com/AlexMouton/accelerate-llvm/archive/1e5969de59b0753ca9b1c6103ba9f6271d0127aa.tar.gz
+- completed:
+    size: 21404
+    url: https://github.com/tmcdonell/linear-accelerate/archive/2f4dfe92854f53c2aac9be51c9da25899a659273.tar.gz
+    cabal-file:
+      size: 2483
+      sha256: b8d6c01b1f407e9a6b6a2cb66a3211f483aa29ded0b1cfa24de29e49308459ca
+    name: linear-accelerate
+    version: 0.8.0.0
+    sha256: 43c16b06fc4c77b255976631156566c1ddd67cd882e6726c31f4171b1342b337
+    pantry-tree:
+      size: 2238
+      sha256: bd1f24c8876185faaef368c0e6d48dc783ae607b4ca380916e139e06c1f5616f
+  original:
+    url: https://github.com/tmcdonell/linear-accelerate/archive/2f4dfe92854f53c2aac9be51c9da25899a659273.tar.gz
 - completed:
     hackage: llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
     pantry-tree:
@@ -46,13 +94,6 @@ packages:
       sha256: f1a83aa959b69b72342997fc4fdc352086bc3b9f306cfb6a4c8bbc850d36b4fb
   original:
     hackage: llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
-- completed:
-    hackage: linear-accelerate-0.6.0.0@sha256:3b85a8c8e4effe1438fb8cf15af13dcfffc1271e21af607ba16dc2ea2f96c1e9,2547
-    pantry-tree:
-      size: 1794
-      sha256: 8dd63d2370095fedc3cd053edf4041477b332c7148ed66bbab4d0303f6724581
-  original:
-    hackage: linear-accelerate-0.6.0.0@sha256:3b85a8c8e4effe1438fb8cf15af13dcfffc1271e21af607ba16dc2ea2f96c1e9,2547
 snapshots:
 - completed:
     size: 524163

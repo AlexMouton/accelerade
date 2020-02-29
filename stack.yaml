@@ -18,7 +18,7 @@
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
 resolver: lts-14.25
-
+# resolver: lts-14.16
 allow-newer: true
 
 # User packages to be built.
@@ -41,15 +41,74 @@ packages:
 # - git: https://github.com/commercialhaskell/stack.git
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
-extra-deps:
-- accelerate-llvm-1.2.0.1@sha256:e794b1abfea5424671d84d5d69bb9ccf468af9adaa481f9adaa78c42538a9cda,7206
-- accelerate-llvm-native-1.2.0.1@sha256:d98c01bc08c6923270e50c5f032f3f816ceee4daddee98ced6e2f2440889f03f,7282
-- accelerate-llvm-ptx-1.2.0.1@sha256:0ddd8f0f8a379a400dd82ad01c319fa4b13a64146b4e05beed5c486f1f2269f7,7020
-- accelerate-1.2.0.1@sha256:bb1928efe602545df4043692916ed427c959110cbd678d03c3f9c3be25d1ae88,20112
-- llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
-- llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
-- linear-accelerate-0.6.0.0@sha256:3b85a8c8e4effe1438fb8cf15af13dcfffc1271e21af607ba16dc2ea2f96c1e9,2547 
+# - accelerate-llvm-1.2.0.1@sha256:e794b1abfea5424671d84d5d69bb9ccf468af9adaa481f9adaa78c42538a9cda,7206
+# - linear-accelerate-0.6.0.0@sha256:3b85a8c8e4effe1438fb8cf15af13dcfffc1271e21af607ba16dc2ea2f96c1e9,2547 
+# - accelerate-llvm-native-1.2.0.1@sha256:d98c01bc08c6923270e50c5f032f3f816ceee4daddee98ced6e2f2440889f03f,7282
+# - accelerate-llvm-ptx-1.2.0.1@sha256:0ddd8f0f8a379a400dd82ad01c319fa4b13a64146b4e05beed5c486f1f2269f7,7020
+# - accelerate-1.2.0.1@sha256:bb1928efe602545df4043692916ed427c959110cbd678d03c3f9c3be25d1ae88,20112
+# - llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
+# - llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
 
+# extra-deps:
+# - accelerate-1.2.0.1@sha256:bb1928efe602545df4043692916ed427c959110cbd678d03c3f9c3be25d1ae88,20112
+# - accelerate-llvm-1.2.0.1@sha256:e794b1abfea5424671d84d5d69bb9ccf468af9adaa481f9adaa78c42538a9cda,7206
+# - accelerate-llvm-native-1.2.0.1@sha256:d98c01bc08c6923270e50c5f032f3f816ceee4daddee98ced6e2f2440889f03f,7282
+# - accelerate-llvm-ptx-1.2.0.1@sha256:0ddd8f0f8a379a400dd82ad01c319fa4b13a64146b4e05beed5c486f1f2269f7,7020
+# - llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
+# - llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
+# - linear-accelerate-0.6.0.0@sha256:3b85a8c8e4effe1438fb8cf15af13dcfffc1271e21af607ba16dc2ea2f96c1e9,2547 
+
+
+# extra-deps:
+# # - accelerate-1.2.0.1@sha256:bb1928efe602545df4043692916ed427c959110cbd678d03c3f9c3be25d1ae88,20112
+# - git: https://github.com/tmcdonell/accelerate.git
+#   commit: "2693873fbf7f94ee408d9f2017ff47251ee064ef"
+# - accelerate-llvm-1.2.0.1@sha256:e794b1abfea5424671d84d5d69bb9ccf468af9adaa481f9adaa78c42538a9cda,7206
+# - accelerate-llvm-native-1.2.0.1@sha256:d98c01bc08c6923270e50c5f032f3f816ceee4daddee98ced6e2f2440889f03f,7282
+# - git: https://github.com/tmcdonell/accelerate-llvm.git
+#   commit: "0f92cd6ad324f87378bffbb9b74bbd0722cee417"
+#   subdirs:
+#     # - accelerate-llvm 
+#     # - accelerate-llvm-native
+#     - accelerate-llvm-ptx
+# # - llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
+# # - llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
+# - git: https://github.com/llvm-hs/llvm-hs.git
+#   commit: "b3a6fd0a7308ebf5fd820bc53106c7d8e98ea472"
+#   subdirs:
+#     - llvm-hs
+#     - llvm-hs-pure
+# # - linear-accelerate-0.6.0.0@sha256:3b85a8c8e4effe1438fb8cf15af13dcfffc1271e21af607ba16dc2ea2f96c1e9,2547 
+# # # TOT
+# # - git: https://github.com/ekmett/linear-accelerate.git
+# #   commit: "7d3bb1d40cdcc75f2f658c31b2eb7541c949e52e"
+# - git: https://github.com/tmcdonell/linear-accelerate.git
+#   commit: "c4a3948d747bf2d024c4ca630aaf8b24a1b154bf"
+
+# TMcDonell private stash +
+extra-deps:
+  - github: acceleratehs/accelerate
+    commit: 2693873fbf7f94ee408d9f2017ff47251ee064ef 
+
+  - github: AlexMouton/accelerate-llvm
+    commit: "1e5969de59b0753ca9b1c6103ba9f6271d0127aa"
+    subdirs:
+      - accelerate-llvm
+      - accelerate-llvm-native
+      - accelerate-llvm-ptx
+   
+  - github: tmcdonell/linear-accelerate
+    commit: 2f4dfe92854f53c2aac9be51c9da25899a659273
+
+  - llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
+  - llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
+
+  # - git: https://github.com/AlexMouton/llvm-hs.git
+  #   commit: "dfe25952805d14b9da8b0a2121d12212e592b64c"
+  #   subdirs:
+  #     - llvm-hs
+  #     - llvm-hs-pure
+    
 # Override default flag values for local packages and extra-deps
 flags:
   llvm-hs:
