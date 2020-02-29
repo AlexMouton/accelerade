@@ -5,6 +5,20 @@
 
 packages:
 - completed:
+    hackage: llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
+    pantry-tree:
+      size: 13599
+      sha256: 537616dec1351bd9f7905182f82f132359cf3058ebbb059c03b4edcef04b2689
+  original:
+    hackage: llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
+- completed:
+    hackage: llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
+    pantry-tree:
+      size: 2600
+      sha256: f1a83aa959b69b72342997fc4fdc352086bc3b9f306cfb6a4c8bbc850d36b4fb
+  original:
+    hackage: llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
+- completed:
     size: 440008
     url: https://github.com/acceleratehs/accelerate/archive/2693873fbf7f94ee408d9f2017ff47251ee064ef.tar.gz
     cabal-file:
@@ -80,20 +94,6 @@ packages:
       sha256: bd1f24c8876185faaef368c0e6d48dc783ae607b4ca380916e139e06c1f5616f
   original:
     url: https://github.com/tmcdonell/linear-accelerate/archive/2f4dfe92854f53c2aac9be51c9da25899a659273.tar.gz
-- completed:
-    hackage: llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
-    pantry-tree:
-      size: 13599
-      sha256: 537616dec1351bd9f7905182f82f132359cf3058ebbb059c03b4edcef04b2689
-  original:
-    hackage: llvm-hs-9.0.1@sha256:ee6ec2eb8cba4daf2a43586388a87dbfd6a2ec6d81d1f9965896ac187acad286,8700
-- completed:
-    hackage: llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
-    pantry-tree:
-      size: 2600
-      sha256: f1a83aa959b69b72342997fc4fdc352086bc3b9f306cfb6a4c8bbc850d36b4fb
-  original:
-    hackage: llvm-hs-pure-9.0.0@sha256:134779f40086a366279f678e670b610d7a7618b28dd43f65894078fd20e04629,2945
 snapshots:
 - completed:
     size: 524163
