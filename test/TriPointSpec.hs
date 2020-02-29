@@ -4,7 +4,7 @@ import Test.Hspec
 import Test.QuickCheck
 import Test.QuickCheck.Property
 
-import System.TimeIt (timeItNamed)
+import System.TimeIt (timeItNamed, timeItT)
 
 import Debug.Trace
 
@@ -12,11 +12,12 @@ import qualified Linear.V3 as L
 import qualified Data.Array.Accelerate.Linear.V3 as AL
 
 import Control.Exception (evaluate)
-import Control.Monad (void)
 import qualified Data.Array.Accelerate as A
-import Data.Array.Accelerate ( (:.), use )
+import Data.Array.Accelerate ( (:.) )
+
 import qualified Data.Array.Accelerate.LLVM.Native as CPU
-import Data.Array.Accelerate.LLVM.PTX as GPU
+import qualified Data.Array.Accelerate.LLVM.PTX as GPU
+
 import Unsafe.Coerce (unsafeCoerce)
 
 import TriPoint
@@ -35,6 +36,17 @@ baryToPoint (p0, p1, p2) (L.V3 b0 b1 b2) =
   p0 * pure b0 
   + p1 * pure b1 
   + p2 * pure b2
+
+specBariAcc dim runN = do
+  it "prints" $ do
+    t <- generate triArb
+    let pointsArb = vectorOf dim $ fmap (baryToPoint t) (baryArb AL.V3) :: Gen [AL.V3 Float]
+    ps <- generate pointsArb
+    let vec = A.fromList (A.Z A.:. dim) ps :: A.Vector (AL.V3 Float)
+    let baryN = runN $ A.filter (barycentricExp $ A.lift t) :: A.Array (A.DIM0 :. Int) (AL.V3 Float) -> (A.Vector (AL.V3 Float), A.Array A.DIM0 Int)
+    evaluate baryN
+    (t, v) <- timeItT $ pure $ baryN vec
+    print t
 
 spec :: Spec
 spec = do
@@ -61,45 +73,19 @@ spec = do
             (barycentric tri point) `shouldBe` False
 
     describe "barycentric" $ do
-      let dim = 10000 :: Int
+      let dim = 100000000 :: Int
       it "prints" $ do
         t <- generate triArb
         let pointsArb = vectorOf dim $ fmap (baryToPoint t) (baryArb AL.V3) :: Gen [AL.V3 Float]
         ps <- generate pointsArb
         let baryNative = filter (barycentric t)
-        timeItNamed "cpu" $ print $ baryNative ps
+        (t, v) <- timeItT $ pure $ baryNative ps
+        print t
 
   describe "Acc" $ do
     describe "barycentri" $ do
-      let dim = 10000 :: Int
-      it "prints" $ do
-        t <- generate triArb
-        let pointsArb = vectorOf dim $ fmap (baryToPoint t) (baryArb AL.V3) :: Gen [AL.V3 Float]
-        ps <- generate pointsArb
-        let vec = A.fromList (A.Z A.:. dim) ps :: A.Vector (AL.V3 Float)
-        let baryCpu = CPU.runN $ A.filter (barycentricExp $ A.lift t) :: A.Array (A.DIM0 :. Int) (AL.V3 Float) -> (A.Vector (AL.V3 Float), A.Array A.DIM0 Int)
-        let baryGpu = GPU.runN $ A.filter (barycentricExp $ A.lift t) :: A.Array (A.DIM0 :. Int) (AL.V3 Float) -> (A.Vector (AL.V3 Float), A.Array A.DIM0 Int)
-        evaluate baryCpu
-        evaluate baryGpu
-        timeItNamed "cpu" $ print $ baryCpu vec
-        timeItNamed "gpu" $ print $ baryGpu vec 
-        -- timeItNamed "gpu" $ print $ GPU.run $ A.filter (\_ -> (A.constant True)) (use vec)
-
-      -- describe "Crash" $ do
-      --   describe "list bootstratp" $ do
-      --     let dim = 1000 :: Int
-      --     it "print" $ do
-      --       let vec = A.fromList (A.Z A.:. dim) [1..dim] :: A.Vector Int
-      --       timeItNamed "gpu" $ print $ GPU.run $ A.filter (\_ -> A.lift True) (A.use vec)
-
-      --   -- describe "accelerated v3 float" $ do
-      --   --   it "print" $ do
-      --   --     let vec = A.fromList (A.Z A.:. 2) [AL.V3 1 1 1, AL.V3 0 0 0] ::  A.Array (A.Z A.:. Int) (AL.V3 Float)
-      --   --     timeItNamed "cpu" $ print $ CPU.run $ A.filter (\_ -> A.lift True) (use vec)
-      --   --     timeItNamed "gpu" $ print $ GPU.run $ A.filter (\_ -> A.lift True) (use vec)
-
-      --   describe "accelerated t3 float" $ do
-      --     it "print" $ do
-      --       let vec = A.fromList (A.Z A.:. 2) [(1, 1, 1), (0, 0, 0)] ::  A.Array (A.Z A.:. Int) (Float, Float, Float)
-      --       timeItNamed "cpu" $ print $ CPU.run $ A.filter (\_ -> A.lift True) (use vec)
-      --       -- timeItNamed "gpu" $ print $ GPU.run $ A.filter (\_ -> A.lift True) (use vec)
+      let dim = 100000000 :: Int
+      describe "CPU" $ do
+        specBariAcc dim CPU.runN
+      describe "GPU" $ do
+        specBariAcc dim GPU.runN
