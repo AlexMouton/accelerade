@@ -17,7 +17,7 @@ import TriPoint
 
 import SupportAcc
 
-import Arbys
+import ArbLinear
 import ArbBary
 
 spec :: Spec

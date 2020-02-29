@@ -2,7 +2,7 @@ module ArbBary where
 
 import Test.QuickCheck
 import ArbFloat
-import Arbys
+import ArbLinear
 
 baryArb :: (Float -> Float -> Float -> v Float ) -> Gen (v Float)
 baryArb v = do

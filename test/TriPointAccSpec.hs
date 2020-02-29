@@ -18,7 +18,7 @@ import TriPointAcc
 
 import SupportAcc
 
-import Arbys
+import ArbLinear
 import ArbBary
 
 specBariAcc dim runN = do

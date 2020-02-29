@@ -1,4 +1,4 @@
-module Arbys where
+module ArbLinear where
 import Test.QuickCheck
 import Test.QuickCheck.Property
 
