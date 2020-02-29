@@ -11,16 +11,18 @@ import System.TimeIt (timeItNamed)
 
 import Dotp
 
-spec :: Spec
-spec = do
-  let dim = 1000000000
+specDotpN dim runN = do
   let xs = fromList (Z :. dim) [0..]
   let ys = fromList (Z :. dim) [1,3..]
-  let dotCpu = CPU.runN dotp
-  let dotGpu = GPU.runN dotp
-  it "runs on cpu" $ do
-    evaluate dotCpu
-    timeItNamed "CPU" $ print $ dotCpu xs ys
-  it "runs on gpu" $ do
-    evaluate dotGpu
-    timeItNamed "GPU" $ print $ dotGpu xs ys
+  let dotN = runN dotp :: Array DIM1 Float -> Array DIM1 Float -> Array DIM0 Float
+  it "runs" $ do
+    evaluate dotN
+    timeItNamed "dotN" $ print $ dotN xs ys
+
+spec :: Spec
+spec = do
+  let dim = 10000000
+  describe "on cpu" $ do
+    specDotpN dim CPU.runN
+  describe "on gpu" $ do
+    specDotpN dim GPU.runN
