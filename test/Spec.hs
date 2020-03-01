@@ -13,8 +13,8 @@ import qualified ArraySpec
 
 main :: IO ()
 main = hspec $ do
-  describe "ArbFloat" ArbFloatSpec.spec
-  describe "Dotp" DotpSpec.spec
+  -- describe "ArbFloat" ArbFloatSpec.spec
+  -- describe "Dotp" DotpSpec.spec
   describe "TriPoint"  TriPointSpec.spec
-  describe "TriPointAcc"  TriPointAccSpec.spec
-  describe "Array"  ArraySpec.spec
+  -- describe "TriPointAcc"  TriPointAccSpec.spec
+  -- describe "Array"  ArraySpec.spec

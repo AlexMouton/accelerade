@@ -9,7 +9,6 @@ import Control.Exception (evaluate)
 import qualified Linear.V3 as L
 
 import System.TimeIt (timeItNamed, timeItT)
-import Debug.Trace
 
 import Bary
 import Types
@@ -26,14 +25,21 @@ spec = do
     describe "barycentric" $ do
       describe "Native" $ do
         describe "inside" $ do
-          it "hits" $ property $ do
-            tri <- triArb
-            bary <- baryArb L.V3
-            let point = baryToPoint tri  bary
-            let res = barycentric tri point
-            return $ if res Prelude.== True 
-              then succeeded 
-              else failed
+          it "hits" $ 
+            forAll triArb
+            ( \ tri -> 
+              forAll (baryArb L.V3) 
+              ( \ bary -> 
+                property $ (
+                  let point = baryToPoint tri  bary
+                      res = barycentric tri point
+                  in
+                    if res == True 
+                      then succeeded 
+                      else failed
+                ) 
+              )
+            )
 
         describe "outside" $ do
           let tri = ( L.V3 (1.0 :: Float) (0.0 :: Float) (0.0 :: Float)

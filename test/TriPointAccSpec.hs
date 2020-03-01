@@ -10,7 +10,6 @@ import Data.Array.Accelerate.Linear.V3
 import Data.Array.Accelerate as A
 
 import System.TimeIt (timeItNamed, timeItT)
-import Debug.Trace
 
 import Bary
 import Types
