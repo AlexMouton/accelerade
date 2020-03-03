@@ -21,18 +21,17 @@ import ArbLinear
 import ArbBary
 
 specBariAcc dim runN = do
-  it "prints" $ do
     t <- QC.generate triArb
     let pointsArb = vectorOf dim $ fmap (baryToPoint t) (baryArb V3) :: Gen [V3 Float]
     ps <- QC.generate pointsArb
-    let vec = fromList (Z :. dim) ps :: Vector (V3 Float)
-    let baryN = runN $ A.filter (barycentricExp $ lift t) :: Array (DIM0 :. Int) (V3 Float) -> (Vector (V3 Float), Array A.DIM0 Int)
+    vec <- evaluate $ fromList (Z :. dim) ps :: IO (Vector (V3 Float))
+    baryN <- evaluate $ runN $ A.filter (barycentricExp $ lift t) :: IO (Array (DIM0 :. Int) (V3 Float) -> (Vector (V3 Float), Array A.DIM0 Int))
     evaluate baryN
-    (t, v) <- timeItT $ pure $ baryN vec
-    print t
+    (t, v) <- timeItT $ evaluate $ baryN vec
+    print $ "t: " <> (show t) <>  " sec"
 
 spec :: Spec
 spec = do
   describe "TriPointAcc" $ do
-    let dim = 100000000 :: Int
+    let dim = 1000000 :: Int
     specPair "baricentric" $ specBariAcc dim

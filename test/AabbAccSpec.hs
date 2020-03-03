@@ -22,7 +22,6 @@ import ArbLinear
 -- import ArbBary
 
 specAabbAcc dim runN = do
-  it "prints" $ do
     let pointsArb = vectorOf dim $ (v3Arb V3 arbitrary) :: Gen [V3 Float]
     ps <- QC.generate pointsArb
     let vec = fromList (Z :. dim) ps :: Vector (V3 Float)
