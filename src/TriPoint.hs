@@ -6,8 +6,6 @@ import Linear.Metric as LM
 
 import Types
 
-import Debug.Trace
-
 barycentric :: Triangle (V3 Float) -> V3 Float -> Bool
 barycentric (a, b, c) p =
   let
@@ -30,4 +28,4 @@ barycentric (a, b, c) p =
     v = (dot00 * dot12 - dot01 * dot02) * invDenom
   in
     -- Check if point is in triangle
-    (v >= 0.0) && (u >= 0.0) && (u + v < 1.0)
+    (denom == 0.0) || (v >= 0.0) && (u >= 0.0) && (u + v < 1.0)

@@ -9,8 +9,6 @@ import Data.Array.Accelerate.Linear.Metric as LM
 import Data.Array.Accelerate as A
 import Data.Array.Accelerate (Exp(..), Acc, Vector)
 
-import Debug.Trace
-
 import Types
 
 barycentricExp :: Exp (Triangle (V3 Float)) -> Exp (V3  Float) -> Exp Bool

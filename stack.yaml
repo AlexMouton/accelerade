@@ -66,7 +66,7 @@ extra-deps:
    
   - github: tmcdonell/linear-accelerate
     commit: 2f4dfe92854f53c2aac9be51c9da25899a659273
-
+  - numeric-limits-0.1.0.0@sha256:214bb53112bff315e42c0e9efa4a89e2cc2e9914e6232d923b596f29f9b1afe6,456
 
 # Override default flag values for local packages and extra-deps
 flags:

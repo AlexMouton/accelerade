@@ -29,6 +29,8 @@ dependencies:
 - llvm-hs-pure >= 9
 - linear-accelerate >= 0.6.0.0
 - linear
+- numeric-limits >= 0.1.0.0
+- vector
 
 library:
   source-dirs: src
