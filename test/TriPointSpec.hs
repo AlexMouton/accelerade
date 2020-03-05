@@ -10,7 +10,7 @@ import qualified Data.Vector as V
 
 import Linear.V3 as L
 
-import System.TimeIt (timeItNamed, timeItT)
+import TimeIt 
 
 import Bary
 import Types
@@ -57,7 +57,7 @@ spec = do
         it (show dim) $ do
           t <- generate triArb
           let pointsArb = vectorOf dim $ fmap (baryToPoint t) (baryArb V3) :: Gen [V3 Float]
-          ps <- generate pointsArb
-          let vec = V.fromListN dim ps :: V.Vector (V3 Float)
-          (t, v) <- timeItT $ evaluate $ (V.filter (barycentric t) vec)
-          print $ "t: " <> (show t) <> " sec"
+          ps <- timeItNamedM "ps" $ generate pointsArb
+          vec <- timeItNamed "vec" $ (V.fromListN dim ps :: V.Vector (V3 Float))
+          v <- timeItNamed "compute" $ (V.filter (barycentric t) vec)
+          pure () 

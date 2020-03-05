@@ -6,11 +6,12 @@ import Test.QuickCheck as QC
 import Test.QuickCheck.Property
 
 import Control.Exception (evaluate)
+import Control.Monad (join)
 
 import Data.Array.Accelerate.Linear.V3
 import Data.Array.Accelerate as A
 
-import System.TimeIt (timeItNamed, timeItT)
+import TimeIt 
 
 -- import Bary
 -- import Types
@@ -23,14 +24,12 @@ import ArbLinear
 
 specAabbAcc dim runN = do
     let pointsArb = vectorOf dim $ (v3Arb V3 arbitrary) :: Gen [V3 Float]
-    ps <- QC.generate pointsArb
-    let vec = fromList (Z :. dim) ps :: Vector (V3 Float)
-    let aabbN = runN $ aabb :: Vector(V3 Float) -> Array DIM0 (V3 Float)
-    evaluate aabbN
+    ps <- timeItNamedM "ps" $ QC.generate pointsArb
+    vec <- timeItNamed "vec" $ fromList (Z :. dim) ps :: IO (Vector (V3 Float))
+    aabbN <- timeItNamed "runN" $ runN $ aabb :: IO (Vector(V3 Float) -> Array DIM0 (V3 Float))
+    -- evaluate aabbN
     -- let t = aabbN vec
-    (t, v) <- timeItT $ evaluate $ aabbN vec
-    print $ "t: " <> (show t) <>  " sec"
-    -- print t
+    v <- timeItNamed "compute" $ aabbN vec
     print v
 
 spec :: Spec

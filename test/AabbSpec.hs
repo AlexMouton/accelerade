@@ -4,25 +4,20 @@ import Test.Hspec
 import Test.QuickCheck as QC
 import Test.QuickCheck.Property
 
-import Control.Exception (evaluate)
 
 import Data.Vector as V
-
-import System.TimeIt (timeItNamed, timeItT)
-
 import Linear.V3
 
+import TimeIt 
 import Aabb
-
 import ArbLinear
 
 specAabb dim = do
   it "prints" $ do
     let pointsArb = vectorOf dim $ (v3Arb V3 arbitrary) :: Gen [V3 Float]
-    ps <- QC.generate pointsArb
-    let vec = fromListN dim ps :: Vector (V3 Float)
-    (t, v) <- timeItT $ evaluate $ V.minimum vec
-    putStrLn $ "t: " <> (show t) <>  " sec"
+    ps <- timeItNamedM "ps" $ QC.generate pointsArb
+    vec <- timeItNamed "vec" $ fromListN dim ps :: IO (Vector (V3 Float))
+    v <- timeItNamed "compute" $ V.minimum vec
     print v
 
 spec :: Spec
