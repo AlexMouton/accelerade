@@ -16,8 +16,6 @@ import Bary
 import Types
 import TriPoint
 
-import SupportAcc
-
 import ArbLinear
 import ArbBary
 
@@ -53,7 +51,7 @@ spec = do
             (barycentric tri point) `shouldBe` False
 
       describe "performance" $ do
-        let dim = 1000000 :: Int
+        let dim = 10000000 :: Int
         it (show dim) $ do
           t <- generate triArb
           let pointsArb = vectorOf dim $ fmap (baryToPoint t) (baryArb V3) :: Gen [V3 Float]
